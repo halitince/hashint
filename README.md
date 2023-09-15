@@ -46,11 +46,11 @@ public class HashInt
     }
     public HashInt(int? value)
     {
-        Value = GetHash(value ?? 0);
+        Value = GetHash(value);
     }
 
     private static int GetId(string value) => string.IsNullOrWhiteSpace(value) ? 0 : Hasher.DecodeSingle(value);
-    private static string GetHash(int value) => value == 0 ? null : Hasher.Encode(value);
+    private static string GetHash(int? value) => value == null ? null : Hasher.Encode(value.Value);
 
     public static implicit operator int(HashInt hashInt) => GetId(hashInt?.Value);
     public static implicit operator HashInt(int value) => new(GetHash(value));
