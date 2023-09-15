@@ -1,0 +1,2 @@
+# hashint
+HashInt Type
