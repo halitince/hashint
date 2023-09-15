@@ -1,5 +1,4 @@
 # HashInt
-Welcome to HashInt Type
 
 `TR` "HashInt" adını verdiğimiz bu özel veri tipi, uygulamanızda kullanılan ID değerlerini daha güvenli hale getirmeyi amaçlar. Bu tip, ID değerlerini arayüzde görünmez hale getirerek verilerin gizliliğini ve güvenliğini artırır. Ayrıca, bu yaklaşımı kullanarak tüm ID değerlerini otomatik olarak şifrelemiş olursunuz.
 Özetle, "HashInt" veri tipi kullanımı, hassas ID verilerini koruma altına almak ve kullanıcıların veya kötü niyetli kişilerin bu verilere erişimini zorlaştırmak için kullanılır. Bu, veri gizliliğini artırmanıza ve uygulamanızın güvenliğini sağlamanıza yardımcı olabilir.
