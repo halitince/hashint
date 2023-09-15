@@ -8,7 +8,7 @@ In summary, the use of the "HashInt" data type serves the purpose of safeguardin
 
 ## Installation
 
-Install the package with [NuGet][]
+Install the package with [NuGet]
 
     Install-Package hashids.net
 
@@ -90,14 +90,15 @@ public class HashIntBinder : IModelBinder
 ## Sample Model
 
 ```C#
-    public class MyEntity
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
-    public class MyModel
-    {
-        public HashInt Id { get; set; }
-        public string Name { get; set; }
-    }
+public class MyEntity
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+public class MyModel
+{
+    public HashInt Id { get; set; }
+    public string Name { get; set; }
+}
 ```
