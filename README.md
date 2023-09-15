@@ -1,7 +1,28 @@
 # HashInt
 Welcome to HashInt Type
 
+`TR` "HashInt" adını verdiğiniz bu özel veri tipi, uygulamanızda kullanılan ID değerlerini daha güvenli hale getirmeyi amaçlar. Bu tip, ID değerlerini arayüzde görünmez hale getirerek verilerin gizliliğini ve güvenliğini artırır. Ayrıca, bu yaklaşımı kullanarak tüm ID değerlerini otomatik olarak şifrelemiş olursunuz.
+Özetle, "HashInt" veri tipi kullanımı, hassas ID verilerini koruma altına almak ve kullanıcıların veya kötü niyetli kişilerin bu verilere erişimini zorlaştırmak için kullanılır. Bu, veri gizliliğini artırmanıza ve uygulamanızın güvenliğini sağlamanıza yardımcı olabilir.
 
+`EN` The custom data type you've named 'HashInt' aims to enhance the security of the ID values used in your application. This type conceals ID values on the interface, thereby enhancing data privacy and security. Furthermore, by employing this approach, all ID values are automatically encrypted.
+
+In summary, the use of the 'HashInt' data type is employed to safeguard sensitive ID data and make it challenging for users or malicious individuals to access these data. This can contribute to bolstering data privacy and ensuring the security of your application.
+
+## Installation
+
+Install the package with [NuGet][]
+
+    Install-Package hashids.net
+
+## Usage
+
+```C#
+using HashidsNet;
+```
+
+
+
+## Source
 
 ```csharp
 using HashidsNet;
@@ -64,4 +85,21 @@ public class HashIntBinder : IModelBinder
         return Task.CompletedTask;
     }
 }
+```
+
+
+
+## Sample Model
+
+```C#
+    public class MyEntity
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+    public class MyModel
+    {
+        public HashInt Id { get; set; }
+        public string Name { get; set; }
+    }
 ```
