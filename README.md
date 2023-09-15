@@ -23,12 +23,6 @@ using HashidsNet;
 ## Source
 
 ```csharp
-using HashidsNet;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-
-namespace MyNamespace;
-
 [ModelBinder(BinderType = typeof(HashIntBinder))]
 public class HashInt
 {
