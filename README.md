@@ -23,6 +23,7 @@ using HashidsNet;
 ## Source
 
 ```csharp
+[JsonConverter(typeof(HashIntJsonConverter))]
 [ModelBinder(BinderType = typeof(HashIntBinder))]
 public class HashInt
 {
@@ -75,6 +76,19 @@ public class HashIntBinder : IModelBinder
 
         bindingContext.Result = ModelBindingResult.Success(new HashInt(value));
         return Task.CompletedTask;
+    }
+}
+
+public class HashIntJsonConverter : JsonConverter<HashInt>
+{
+    public override HashInt Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        return new HashInt(reader.GetString()!);
+    }
+    
+    public override void Write(Utf8JsonWriter writer, HashInt hashInt, JsonSerializerOptions options)
+    {
+        writer.WriteStringValue(hashInt.ToString());
     }
 }
 ```
