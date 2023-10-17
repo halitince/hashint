@@ -31,10 +31,10 @@ public class HashInt
 
     public string Value { get; }
 
-    [JsonIgnore]
-    public int Int => GetId(Value);
-
+    public string Value { get; }
+    
     public override string ToString() => Value;
+    public int ToInt () => GetId(Value);
 
     public HashInt() { }
     public HashInt(string value)
