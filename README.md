@@ -30,8 +30,6 @@ public class HashInt
     private static readonly Hashids Hasher = new("your.salt:)", 8);
 
     public string Value { get; }
-
-    public string Value { get; }
     
     public override string ToString() => Value;
     public int ToInt () => GetId(Value);
