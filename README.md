@@ -30,6 +30,8 @@ public class HashInt
     private static readonly Hashids Hasher = new("your.salt:)", 8);
 
     public string Value { get; }
+
+    [System.Text.Json.Serialization.JsonIgnore]
     public int Int => GetId(Value);
 
     public override string ToString() => Value;
