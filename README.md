@@ -31,7 +31,7 @@ public class HashInt
 
     public string Value { get; }
 
-    [System.Text.Json.Serialization.JsonIgnore]
+    [JsonIgnore]
     public int Int => GetId(Value);
 
     public override string ToString() => Value;
