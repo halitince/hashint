@@ -27,7 +27,7 @@ using HashidsNet;
 [ModelBinder(BinderType = typeof(HashIntBinder))]
 public class HashInt
 {
-    private static readonly Hashids Hasher = new("your.salt:)", 8);
+    public static Hashids Hasher { get; set; }
 
     public string Value { get; }
     
@@ -89,6 +89,14 @@ public class HashIntJsonConverter : JsonConverter<HashInt>
     public override void Write(Utf8JsonWriter writer, HashInt hashInt, JsonSerializerOptions options)
     {
         writer.WriteStringValue(hashInt.ToString());
+    }
+}
+
+public static class HastIntExtensions
+{
+    public static void UseHashInt(this IApplicationBuilder app, Hashids hashids)
+    {
+       HashInt.Hasher = hashids;
     }
 }
 ```
