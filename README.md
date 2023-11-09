@@ -18,6 +18,9 @@ Install the package with [NuGet]
 using HashidsNet;
 ```
 
+```C#
+app.UseHashInt(new Hashids("your.Salt", 8));
+```
 
 
 ## Source
