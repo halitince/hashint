@@ -106,11 +106,11 @@ public IActionResult ListView()
 ```html
 <html>
 <body>
-    <a href="/DetailView?id=Y8q3Ymvr">Test 1</a>
-    <a href="/DetailView?id=nrz5Pm79">Test 2</a>
-    <a href="/DetailView?id=r5zP4z9A">Test 3</a>
-    <a href="/DetailView?id=MDmRlqPo">Test 4</a>
-    <a href="/DetailView?id=xnmYlZPy">Test 5</a>
+    <a href="/DetailView/Y8q3Ymvr">Test 1</a>
+    <a href="/DetailView/nrz5Pm79">Test 2</a>
+    <a href="/DetailView/r5zP4z9A">Test 3</a>
+    <a href="/DetailView/MDmRlqPo">Test 4</a>
+    <a href="/DetailView/xnmYlZPy">Test 5</a>
 </body>
 </html>
 ```
