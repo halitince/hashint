@@ -18,90 +18,6 @@ Install the package with [NuGet]
 app.UseHashInt(new Hashids("your.Salt", 8));
 ```
 
-
-## Source
-
-```csharp
-[JsonConverter(typeof(HashIntJsonConverter))]
-[ModelBinder(BinderType = typeof(HashIntBinder))]
-public class HashInt
-{
-    public static Hashids Hasher { get; set; }
-
-    public string Value { get; }
-    
-    public override string ToString() => Value;
-    public int ToInt () => GetId(Value);
-
-    public HashInt() { }
-    public HashInt(string value)
-    {
-        Value = value;
-    }
-    public HashInt(int? value)
-    {
-        Value = GetHash(value);
-    }
-
-    private static int GetId(string value) => string.IsNullOrWhiteSpace(value) ? 0 : Hasher.DecodeSingle(value);
-    private static string GetHash(int? value) => value == null ? null : Hasher.Encode(value.Value);
-
-    public static implicit operator int(HashInt hashInt) => GetId(hashInt?.Value);
-    public static implicit operator HashInt(int value) => new(GetHash(value));
-
-    public static implicit operator string(HashInt hashInt) => hashInt.Value;
-    public static implicit operator HashInt(string value) => new(value);
-}
-
-public class HashIntBinder : IModelBinder
-{
-    public Task BindModelAsync(ModelBindingContext bindingContext)
-    {
-        if (bindingContext == null)
-            throw new ArgumentNullException(nameof(bindingContext));
-
-        var modelName = bindingContext.ModelName;
-
-        var valueProviderResult = bindingContext.ValueProvider.GetValue(modelName);
-        if (valueProviderResult == ValueProviderResult.None)
-            return Task.CompletedTask;
-
-        bindingContext.ModelState.SetModelValue(modelName, valueProviderResult);
-
-        var value = valueProviderResult.FirstValue;
-
-        if (string.IsNullOrEmpty(value))
-            return Task.CompletedTask;
-
-        bindingContext.Result = ModelBindingResult.Success(new HashInt(value));
-        return Task.CompletedTask;
-    }
-}
-
-public class HashIntJsonConverter : JsonConverter<HashInt>
-{
-    public override HashInt Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-    {
-        return new HashInt(reader.GetString()!);
-    }
-    
-    public override void Write(Utf8JsonWriter writer, HashInt hashInt, JsonSerializerOptions options)
-    {
-        writer.WriteStringValue(hashInt.ToString());
-    }
-}
-
-public static class HastIntExtensions
-{
-    public static void UseHashInt(this IApplicationBuilder app, Hashids hashids)
-    {
-       HashInt.Hasher = hashids;
-    }
-}
-```
-
-
-
 ## Sample Model
 
 ```C#
@@ -117,3 +33,65 @@ public class MyModel
     public string Name { get; set; }
 }
 ```
+
+
+## Sample
+
+```csharp
+private List<MyEntity> TestDataLikeDbTable => new()
+{
+
+    new MyEntity { Id = 1, Name = "Test 1" },
+    new MyEntity { Id = 2, Name = "Test 2" },
+    new MyEntity { Id = 3, Name = "Test 3" },
+    new MyEntity { Id = 4, Name = "Test 4" },
+    new MyEntity { Id = 5, Name = "Test 5" }
+};
+
+[HttpGet("TestList")]
+public List<MyModel> TestList()
+{
+    var list = TestDataLikeDbTable.Select(x => new MyModel()
+    {
+        Id = x.Id,
+        Name = x.Name,
+    }).ToList();
+
+    return list;
+}
+
+```
+
+## Output
+
+```url
+http://domain.com/TestList
+```
+
+```json
+
+[
+  {
+    "id": "Y8q3Ymvr",
+    "name": "Test 1"
+  },
+  {
+    "id": "nrz5Pm79",
+    "name": "Test 2"
+  },
+  {
+    "id": "r5zP4z9A",
+    "name": "Test 3"
+  },
+  {
+    "id": "MDmRlqPo",
+    "name": "Test 4"
+  },
+  {
+    "id": "xnmYlZPy",
+    "name": "Test 5"
+  }
+]
+
+```
+
