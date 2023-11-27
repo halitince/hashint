@@ -47,8 +47,7 @@ public class MyModel
 ## Sample For Api
 
 ```csharp
-[HttpGet("TestList")]
-public List<MyModel> TestList()
+public JsonResult TestList()
 {
     var list = TestDataLikeDbTable.Select(x => new MyModel()
     {
@@ -56,7 +55,7 @@ public List<MyModel> TestList()
         Name = x.Name,
     }).ToList();
 
-    return list;
+    return Json(list);
 }
 ```
 
@@ -78,7 +77,6 @@ Output
   
 `Source`
 ```csharp
-[HttpGet("ListView")]
 public IActionResult ListView()
 {
     var listModel = TestDataLikeDbTable.Select(x => new MyModel()
@@ -119,7 +117,6 @@ public IActionResult ListView()
   
 `Source`
 ```csharp
-[HttpGet("DetailView")]
 public IActionResult DetailView(HashInt id)
 {
     var model = TestDataLikeDbTable.Where(x => x.Id == id)
