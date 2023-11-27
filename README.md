@@ -10,13 +10,9 @@ In summary, the use of the "HashInt" data type serves the purpose of safeguardin
 
 Install the package with [NuGet]
 
-    Install-Package hashids.net
+    Install-Package HashInt
 
 ## Usage
-
-```C#
-using HashidsNet;
-```
 
 ```C#
 app.UseHashInt(new Hashids("your.Salt", 8));
