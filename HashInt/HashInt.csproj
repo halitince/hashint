@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Title>HashInt</Title>
+		<Version>1.4.0</Version>
+		<Authors>halitince</Authors>
+		<Company>halitince</Company>
+		<Product>HashInt</Product>
+		<Description>HashInt, Şifrelenmiş Idler</Description>
+		<PackageProjectUrl>https://github.com/halitince/hashint</PackageProjectUrl>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/halitince/hashint</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>hi, hash, hashint, encrypto, Hashidsnet, Hashids.net</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<AssemblyName>HashInt</AssemblyName>
+		<RootNamespace>Hi.Types</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Hashids.net" Version="1.7.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.38" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="icon.png">
+			<PackagePath>\</PackagePath>
+			<Pack>True</Pack>
+		</None>
+	</ItemGroup>
+
+</Project>
